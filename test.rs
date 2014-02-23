@@ -36,6 +36,7 @@ fn main() {
     tests::custom_styles_owned_str();
     println!("Test custome styles for ref str");
     tests::custom_styles_ref_str();
+    tests::final_test();
 }
 
 mod tests {
@@ -99,6 +100,11 @@ mod tests {
         println!("{}", "Hello world".blink());
         println!("{}", "Hello world".reverse());
         println!("{}", "Hello world".concealed());
+    }
+
+    pub fn final_test() {
+        println!("{}", "Super final test combo !".magentaf().blink()
+                 .yellowb().underscore());
     }
 }
 
