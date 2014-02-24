@@ -23,7 +23,11 @@
 
 extern crate colorize;
 
+//use colorize::{Red, Greenb};
+
 fn main() {
+    //colorize::global_fg(Red);
+    //colorize::global_bg(Greenb);
     println!("Test foreground color for owned str");
     tests::foreground_color_owned_str();
     println!("Test background color for owned str");
@@ -50,7 +54,8 @@ mod tests {
         println!("{}", (~"Hello world").bluef());
         println!("{}", (~"Hello world").magentaf());
         println!("{}", (~"Hello world").cyanf());
-        println!("{}", (~"Hello world").whitef());
+        println!("{}", (~"Hello world").greyf());
+        println!("{}", (~"Hello world").defaultf());
     }
 
     pub fn background_color_owned_str() {
@@ -61,7 +66,7 @@ mod tests {
         println!("{}", (~"Hello world").blueb());
         println!("{}", (~"Hello world").magentab());
         println!("{}", (~"Hello world").cyanb());
-        println!("{}", (~"Hello world").whiteb());
+        println!("{}", (~"Hello world").greyb());
     }
 
     pub fn foreground_color_ref_str() {
@@ -72,7 +77,8 @@ mod tests {
         println!("{}", "Hello world".bluef());
         println!("{}", "Hello world".magentaf());
         println!("{}", "Hello world".cyanf());
-        println!("{}", "Hello world".whitef());
+        println!("{}", "Hello world".greyf());
+        println!("{}", "Hello world".defaultf());
     }
 
     pub fn background_color_ref_str() {
@@ -83,7 +89,7 @@ mod tests {
         println!("{}", "Hello world".blueb());
         println!("{}", "Hello world".magentab());
         println!("{}", "Hello world".cyanb());
-        println!("{}", "Hello world".whiteb());
+        println!("{}", "Hello world".greyb());
     }
 
     pub fn custom_styles_owned_str() {
