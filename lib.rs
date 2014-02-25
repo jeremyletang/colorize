@@ -176,6 +176,7 @@ pub fn reset() {
 pub trait AnsiColor {
     /// Foreground black
     fn blackf(self) -> ~str;
+    //fn b_blackf(self) -> ~str;
     /// Foreground red
     fn redf(self) -> ~str;
     /// Foreground green
