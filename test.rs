@@ -29,17 +29,17 @@ use colorize::AnsiColor;
 fn main() {
     //colorize::global_fg(Red);
     //colorize::global_bg(Greenb);
-    println!("{}", "\tTest foreground color for owned str".b_greenf());
+    println!("{}", "\tTest foreground color for owned str".b_green());
     tests::foreground_color_owned_str();
-    println!("{}", "\tTest background color for owned str".b_greenf());
+    println!("{}", "\tTest background color for owned str".b_green());
     tests::background_color_owned_str();
-    println!("{}", "\tTest foreground color for &'static str".b_greenf());
+    println!("{}", "\tTest foreground color for &'static str".b_green());
     tests::foreground_color_ref_str();
-    println!("{}", "\tTest background color for &'static str".b_greenf());
+    println!("{}", "\tTest background color for &'static str".b_green());
     tests::background_color_ref_str();
-    println!("{}", "\tTest custome styles for owned str".b_greenf());
+    println!("{}", "\tTest custome styles for owned str".b_green());
     tests::custom_styles_owned_str();
-    println!("{}", "\tTest custome styles for ref str".b_greenf());
+    println!("{}", "\tTest custome styles for ref str".b_green());
     tests::custom_styles_ref_str();
     tests::final_test();
 }
@@ -48,23 +48,23 @@ mod tests {
     use colorize::AnsiColor;
 
     pub fn foreground_color_owned_str() {
-        println!("{}", (~"Black").blackf());
-        println!("{}", (~"Bright black").b_blackf());
-        println!("{}", (~"Red").redf());
-        println!("{}", (~"Bright Red").b_redf());
-        println!("{}", (~"Green").greenf());
-        println!("{}", (~"Bright Green").b_greenf());
-        println!("{}", (~"Yellow").yellowf());
-        println!("{}", (~"Bright Yellow").b_yellowf());
-        println!("{}", (~"Blue").bluef());
-        println!("{}", (~"Bright Blue").b_bluef());
-        println!("{}", (~"Magenta").magentaf());
-        println!("{}", (~"Bright Magenta").b_magentaf());
-        println!("{}", (~"Cyan").cyanf());
-        println!("{}", (~"Bright Cyan").b_cyanf());
-        println!("{}", (~"Grey").greyf());
-        println!("{}", (~"Bright Grey").b_greyf());
-        println!("{}", (~"Hello world").defaultf());
+        println!("{}", (~"Black").black());
+        println!("{}", (~"Bright black").b_black());
+        println!("{}", (~"Red").red());
+        println!("{}", (~"Bright Red").b_red());
+        println!("{}", (~"Green").green());
+        println!("{}", (~"Bright Green").b_green());
+        println!("{}", (~"Yellow").yellow());
+        println!("{}", (~"Bright Yellow").b_yellow());
+        println!("{}", (~"Blue").blue());
+        println!("{}", (~"Bright Blue").b_blue());
+        println!("{}", (~"Magenta").magenta());
+        println!("{}", (~"Bright Magenta").b_magenta());
+        println!("{}", (~"Cyan").cyan());
+        println!("{}", (~"Bright Cyan").b_cyan());
+        println!("{}", (~"Grey").grey());
+        println!("{}", (~"Bright Grey").b_grey());
+        println!("{}", (~"Hello world").default());
     }
 
     pub fn background_color_owned_str() {
@@ -88,23 +88,23 @@ mod tests {
     }
 
     pub fn foreground_color_ref_str() {
-        println!("{}", "Black".blackf());
-        println!("{}", "Bright black".b_blackf());
-        println!("{}", "Red".redf());
-        println!("{}", "Bright Red".b_redf());
-        println!("{}", "Green".greenf());
-        println!("{}", "Bright Green".b_greenf());
-        println!("{}", "Yellow".yellowf());
-        println!("{}", "Bright Yellow".b_yellowf());
-        println!("{}", "Blue".bluef());
-        println!("{}", "Bright Blue".b_bluef());
-        println!("{}", "Magenta".magentaf());
-        println!("{}", "Bright Magenta".b_magentaf());
-        println!("{}", "Cyan".cyanf());
-        println!("{}", "Bright Cyan".b_cyanf());
-        println!("{}", "Grey".greyf());
-        println!("{}", "Bright Grey".b_greyf());
-        println!("{}", "Hello world".defaultf());
+        println!("{}", "Black".black());
+        println!("{}", "Bright black".b_black());
+        println!("{}", "Red".red());
+        println!("{}", "Bright Red".b_red());
+        println!("{}", "Green".green());
+        println!("{}", "Bright Green".b_green());
+        println!("{}", "Yellow".yellow());
+        println!("{}", "Bright Yellow".b_yellow());
+        println!("{}", "Blue".blue());
+        println!("{}", "Bright Blue".b_blue());
+        println!("{}", "Magenta".magenta());
+        println!("{}", "Bright Magenta".b_magenta());
+        println!("{}", "Cyan".cyan());
+        println!("{}", "Bright Cyan".b_cyan());
+        println!("{}", "Grey".grey());
+        println!("{}", "Bright Grey".b_grey());
+        println!("{}", "Hello world".default());
     }
 
     pub fn background_color_ref_str() {
@@ -144,7 +144,7 @@ mod tests {
     }
 
     pub fn final_test() {
-        println!("{}", "Super final test combo !".magentaf().blink()
+        println!("{}", "Super final test combo !".magenta().blink()
                  .b_yellowb().underscore());
     }
 }

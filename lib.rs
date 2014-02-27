@@ -19,6 +19,37 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+
+/*!
+Terminal color using ansi escape character for Rust.
+
+```Rust
+extern mod colorize;
+// Import the trait implemented for &'static str and ~str
+use colorize::AnsiColor;
+// Import the colors for the global
+use colorize::{BrightRed, Blue};
+
+pub fn main() {
+    // Set some global colors
+    colorize::global_fg(BrightRed);
+    colorize::global_bg(Blue);
+    // ^~~~ These settings are reset to default at the end.
+
+    // You can use specific colors or style on a given str, 
+    // the globals colors are restored after !
+
+    // Write a green underlined text on a yellow background !
+    println!("{}", "Hello World !".green().underline().yellowb());
+
+    // Use bright or normal colors
+    println!("{}", "Bright Green foreground and Magenta background !".b_green().magentab());
+}
+
+```
+
+*/
+
 #[crate_id = "colorize#0.1"];
 #[desc = "Terminal color library"];
 #[license = "MIT"];
@@ -191,39 +222,39 @@ pub fn reset() {
 
 pub trait AnsiColor {
     /// Foreground black
-    fn blackf(self) -> ~str;
+    fn black(self) -> ~str;
     /// Foreground red
-    fn redf(self) -> ~str;
+    fn red(self) -> ~str;
     /// Foreground green
-    fn greenf(self) -> ~str;
+    fn green(self) -> ~str;
     /// Foreground yellow
-    fn yellowf(self) -> ~str;
+    fn yellow(self) -> ~str;
     /// Foreground blue
-    fn bluef(self) -> ~str;
+    fn blue(self) -> ~str;
     /// Foreground magenta
-    fn magentaf(self) -> ~str;
+    fn magenta(self) -> ~str;
     /// Foreground cyan
-    fn cyanf(self) -> ~str;
+    fn cyan(self) -> ~str;
     /// Foreground grey
-    fn greyf(self) -> ~str;
+    fn grey(self) -> ~str;
     /// Foreground black bright
-    fn b_blackf(self) -> ~str;
+    fn b_black(self) -> ~str;
     /// Foreground red bright
-    fn b_redf(self) -> ~str;
+    fn b_red(self) -> ~str;
     /// Foreground green
-    fn b_greenf(self) -> ~str;
+    fn b_green(self) -> ~str;
     /// Foreground yellow
-    fn b_yellowf(self) -> ~str;
+    fn b_yellow(self) -> ~str;
     /// Foreground blue
-    fn b_bluef(self) -> ~str;
+    fn b_blue(self) -> ~str;
     /// Foreground magenta
-    fn b_magentaf(self) -> ~str;
+    fn b_magenta(self) -> ~str;
     /// Foreground cyan
-    fn b_cyanf(self) -> ~str;
+    fn b_cyan(self) -> ~str;
     /// Foreground grey
-    fn b_greyf(self) -> ~str;
+    fn b_grey(self) -> ~str;
     /// Foreground default
-    fn defaultf(self) -> ~str;
+    fn default(self) -> ~str;
 
     /// Background black
     fn blackb(self) -> ~str;
@@ -280,23 +311,23 @@ pub trait AnsiColor {
 
 impl AnsiColor for ~str {
     // Foreground
-    fn blackf(self) -> ~str { internal::pack(Black, self) }
-    fn redf(self) -> ~str { internal::pack(Red, self) }
-    fn greenf(self) -> ~str { internal::pack(Green, self) }
-    fn yellowf(self) -> ~str { internal::pack(Yellow, self) }
-    fn bluef(self) -> ~str { internal::pack(Blue, self) }
-    fn magentaf(self) -> ~str { internal::pack(Magenta, self) }
-    fn cyanf(self) -> ~str { internal::pack(Cyan, self) }
-    fn greyf(self) -> ~str { internal::pack(Grey, self) }
-    fn b_blackf(self) -> ~str { internal::pack(BrightBlack, self) }
-    fn b_redf(self) -> ~str { internal::pack(BrightRed, self) }
-    fn b_greenf(self) -> ~str { internal::pack(BrightGreen, self) }
-    fn b_yellowf(self) -> ~str { internal::pack(BrightYellow, self) }
-    fn b_bluef(self) -> ~str { internal::pack(BrightBlue, self) }
-    fn b_magentaf(self) -> ~str { internal::pack(BrightMagenta, self) }
-    fn b_cyanf(self) -> ~str { internal::pack(BrightCyan, self) }
-    fn b_greyf(self) -> ~str { internal::pack(BrightGrey, self) }
-    fn defaultf(self) -> ~str { internal::pack(Default, self) }
+    fn black(self) -> ~str { internal::pack(Black, self) }
+    fn red(self) -> ~str { internal::pack(Red, self) }
+    fn green(self) -> ~str { internal::pack(Green, self) }
+    fn yellow(self) -> ~str { internal::pack(Yellow, self) }
+    fn blue(self) -> ~str { internal::pack(Blue, self) }
+    fn magenta(self) -> ~str { internal::pack(Magenta, self) }
+    fn cyan(self) -> ~str { internal::pack(Cyan, self) }
+    fn grey(self) -> ~str { internal::pack(Grey, self) }
+    fn b_black(self) -> ~str { internal::pack(BrightBlack, self) }
+    fn b_red(self) -> ~str { internal::pack(BrightRed, self) }
+    fn b_green(self) -> ~str { internal::pack(BrightGreen, self) }
+    fn b_yellow(self) -> ~str { internal::pack(BrightYellow, self) }
+    fn b_blue(self) -> ~str { internal::pack(BrightBlue, self) }
+    fn b_magenta(self) -> ~str { internal::pack(BrightMagenta, self) }
+    fn b_cyan(self) -> ~str { internal::pack(BrightCyan, self) }
+    fn b_grey(self) -> ~str { internal::pack(BrightGrey, self) }
+    fn default(self) -> ~str { internal::pack(Default, self) }
 
     // Background
     fn blackb(self) -> ~str { internal::pack(Blackb, self) }
@@ -331,23 +362,23 @@ impl AnsiColor for ~str {
 
 impl AnsiColor for &'static str {
     // Foreground
-    fn blackf(self) -> ~str { self.into_owned().blackf() }
-    fn redf(self) -> ~str { self.into_owned().redf() }
-    fn greenf(self) -> ~str { self.into_owned().greenf() }
-    fn yellowf(self) -> ~str { self.into_owned().yellowf() }
-    fn bluef(self) -> ~str { self.into_owned().bluef() }
-    fn magentaf(self) -> ~str { self.into_owned().magentaf() }
-    fn cyanf(self) -> ~str { self.into_owned().cyanf() }
-    fn greyf(self) -> ~str { self.into_owned().greyf() }
-    fn defaultf(self) -> ~str { self.into_owned().defaultf() }
-    fn b_blackf(self) -> ~str { self.into_owned().b_blackf() }
-    fn b_redf(self) -> ~str { self.into_owned().b_redf() }
-    fn b_greenf(self) -> ~str { self.into_owned().b_greenf() }
-    fn b_yellowf(self) -> ~str { self.into_owned().b_yellowf() }
-    fn b_bluef(self) -> ~str { self.into_owned().b_bluef() }
-    fn b_magentaf(self) -> ~str { self.into_owned().b_magentaf() }
-    fn b_cyanf(self) -> ~str { self.into_owned().b_cyanf() }
-    fn b_greyf(self) -> ~str { self.into_owned().b_greyf() }
+    fn black(self) -> ~str { self.into_owned().black() }
+    fn red(self) -> ~str { self.into_owned().red() }
+    fn green(self) -> ~str { self.into_owned().green() }
+    fn yellow(self) -> ~str { self.into_owned().yellow() }
+    fn blue(self) -> ~str { self.into_owned().blue() }
+    fn magenta(self) -> ~str { self.into_owned().magenta() }
+    fn cyan(self) -> ~str { self.into_owned().cyan() }
+    fn grey(self) -> ~str { self.into_owned().grey() }
+    fn default(self) -> ~str { self.into_owned().default() }
+    fn b_black(self) -> ~str { self.into_owned().b_black() }
+    fn b_red(self) -> ~str { self.into_owned().b_red() }
+    fn b_green(self) -> ~str { self.into_owned().b_green() }
+    fn b_yellow(self) -> ~str { self.into_owned().b_yellow() }
+    fn b_blue(self) -> ~str { self.into_owned().b_blue() }
+    fn b_magenta(self) -> ~str { self.into_owned().b_magenta() }
+    fn b_cyan(self) -> ~str { self.into_owned().b_cyan() }
+    fn b_grey(self) -> ~str { self.into_owned().b_grey() }
 
     // Background
     fn blackb(self) -> ~str { self.into_owned().blackb() }

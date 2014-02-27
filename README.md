@@ -13,7 +13,10 @@ __libcolorize__ is really simple to use, see this short example !
 
 ```Rust
 extern mod colorize;
+// Import the trait implemented for &'static str and ~str
 use colorize::AnsiColor;
+// Import the colors for the global
+use colorize::{BrightRed, Blue};
 
 pub fn main() {
     // Set some global colors
