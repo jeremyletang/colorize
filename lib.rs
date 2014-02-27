@@ -37,6 +37,14 @@ pub enum Color {
     Cyan = 36,
     Grey = 37,
     Default = 39,
+    BrightBlack = 90,
+    BrightRed = 91,
+    BrightGreen = 92,
+    BrightYellow = 93,
+    BrightBlue = 94,
+    BrightMagenta = 95,
+    BrightCyan = 96,
+    BrightGrey = 97
 }
 
 enum BgColor {
@@ -48,7 +56,15 @@ enum BgColor {
     Magentab = 45,
     Cyanb = 46,
     Greyb = 47,
-    Defaultb = 49
+    Defaultb = 49,
+    BrightBlackb = 100,
+    BrightRedb = 101,
+    BrightGreenb = 102,
+    BrightYellowb = 103,
+    BrightBlueb = 104,
+    BrightMagentab = 105,
+    BrightCyanb = 106,
+    BrightGreyb = 107
 }
 
 enum Style {
@@ -176,7 +192,6 @@ pub fn reset() {
 pub trait AnsiColor {
     /// Foreground black
     fn blackf(self) -> ~str;
-    //fn b_blackf(self) -> ~str;
     /// Foreground red
     fn redf(self) -> ~str;
     /// Foreground green
@@ -191,6 +206,22 @@ pub trait AnsiColor {
     fn cyanf(self) -> ~str;
     /// Foreground grey
     fn greyf(self) -> ~str;
+    /// Foreground black bright
+    fn b_blackf(self) -> ~str;
+    /// Foreground red bright
+    fn b_redf(self) -> ~str;
+    /// Foreground green
+    fn b_greenf(self) -> ~str;
+    /// Foreground yellow
+    fn b_yellowf(self) -> ~str;
+    /// Foreground blue
+    fn b_bluef(self) -> ~str;
+    /// Foreground magenta
+    fn b_magentaf(self) -> ~str;
+    /// Foreground cyan
+    fn b_cyanf(self) -> ~str;
+    /// Foreground grey
+    fn b_greyf(self) -> ~str;
     /// Foreground default
     fn defaultf(self) -> ~str;
 
@@ -210,6 +241,22 @@ pub trait AnsiColor {
     fn cyanb(self) -> ~str;
     /// Background grey
     fn greyb(self) -> ~str;
+    /// Background black
+    fn b_blackb(self) -> ~str;
+    /// Background red
+    fn b_redb(self) -> ~str;
+    /// Background green
+    fn b_greenb(self) -> ~str;
+    /// Background yellow
+    fn b_yellowb(self) -> ~str;
+    /// Background bblue
+    fn b_blueb(self) -> ~str;
+    /// Background magenta
+    fn b_magentab(self) -> ~str;
+    /// Background cyan
+    fn b_cyanb(self) -> ~str;
+    /// Background grey
+    fn b_greyb(self) -> ~str;
     /// Background default
     fn defaultb(self) -> ~str;
 
@@ -241,7 +288,16 @@ impl AnsiColor for ~str {
     fn magentaf(self) -> ~str { internal::pack(Magenta, self) }
     fn cyanf(self) -> ~str { internal::pack(Cyan, self) }
     fn greyf(self) -> ~str { internal::pack(Grey, self) }
+    fn b_blackf(self) -> ~str { internal::pack(BrightBlack, self) }
+    fn b_redf(self) -> ~str { internal::pack(BrightRed, self) }
+    fn b_greenf(self) -> ~str { internal::pack(BrightGreen, self) }
+    fn b_yellowf(self) -> ~str { internal::pack(BrightYellow, self) }
+    fn b_bluef(self) -> ~str { internal::pack(BrightBlue, self) }
+    fn b_magentaf(self) -> ~str { internal::pack(BrightMagenta, self) }
+    fn b_cyanf(self) -> ~str { internal::pack(BrightCyan, self) }
+    fn b_greyf(self) -> ~str { internal::pack(BrightGrey, self) }
     fn defaultf(self) -> ~str { internal::pack(Default, self) }
+
     // Background
     fn blackb(self) -> ~str { internal::pack(Blackb, self) }
     fn redb(self) -> ~str { internal::pack(Redb, self) }
@@ -251,6 +307,14 @@ impl AnsiColor for ~str {
     fn magentab(self) -> ~str { internal::pack(Magentab, self) }
     fn cyanb(self) -> ~str { internal::pack(Cyanb, self) }
     fn greyb(self) -> ~str { internal::pack(Greyb, self) }
+    fn b_blackb(self) -> ~str { internal::pack(BrightBlackb, self) }
+    fn b_redb(self) -> ~str { internal::pack(BrightRedb, self) }
+    fn b_greenb(self) -> ~str { internal::pack(BrightGreenb, self) }
+    fn b_yellowb(self) -> ~str { internal::pack(BrightYellowb, self) }
+    fn b_blueb(self) -> ~str { internal::pack(BrightBlueb, self) }
+    fn b_magentab(self) -> ~str { internal::pack(BrightMagentab, self) }
+    fn b_cyanb(self) -> ~str { internal::pack(BrightCyanb, self) }
+    fn b_greyb(self) -> ~str { internal::pack(BrightGreyb, self) }
     fn defaultb(self) -> ~str { internal::pack(Defaultb, self) }
 
     // styles
@@ -276,6 +340,15 @@ impl AnsiColor for &'static str {
     fn cyanf(self) -> ~str { self.into_owned().cyanf() }
     fn greyf(self) -> ~str { self.into_owned().greyf() }
     fn defaultf(self) -> ~str { self.into_owned().defaultf() }
+    fn b_blackf(self) -> ~str { self.into_owned().b_blackf() }
+    fn b_redf(self) -> ~str { self.into_owned().b_redf() }
+    fn b_greenf(self) -> ~str { self.into_owned().b_greenf() }
+    fn b_yellowf(self) -> ~str { self.into_owned().b_yellowf() }
+    fn b_bluef(self) -> ~str { self.into_owned().b_bluef() }
+    fn b_magentaf(self) -> ~str { self.into_owned().b_magentaf() }
+    fn b_cyanf(self) -> ~str { self.into_owned().b_cyanf() }
+    fn b_greyf(self) -> ~str { self.into_owned().b_greyf() }
+
     // Background
     fn blackb(self) -> ~str { self.into_owned().blackb() }
     fn redb(self) -> ~str { self.into_owned().redb() }
@@ -286,6 +359,14 @@ impl AnsiColor for &'static str {
     fn cyanb(self) -> ~str { self.into_owned().cyanb() }
     fn greyb(self) -> ~str { self.into_owned().greyb() }
     fn defaultb(self) -> ~str { self.into_owned().defaultb() }
+    fn b_blackb(self) -> ~str { self.into_owned().b_blackb() }
+    fn b_redb(self) -> ~str { self.into_owned().b_redb() }
+    fn b_greenb(self) -> ~str { self.into_owned().b_greenb() }
+    fn b_yellowb(self) -> ~str { self.into_owned().b_yellowb() }
+    fn b_blueb(self) -> ~str { self.into_owned().b_blueb() }
+    fn b_magentab(self) -> ~str { self.into_owned().b_magentab() }
+    fn b_cyanb(self) -> ~str { self.into_owned().b_cyanb() }
+    fn b_greyb(self) -> ~str { self.into_owned().b_greyb() }
 
     // styles
     fn underscore(self) -> ~str { self.into_owned().underscore() }
