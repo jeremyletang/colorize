@@ -21,7 +21,8 @@ pub fn main() {
     colorize::global_bg(Blue);
     // ^~~~ These settings are reset to default at the end.
 
-    // You can use specific colors or style on a given str, the globals colors are restored after !
+    // You can use specific colors or style on a given str,
+    // the globals colors are restored after !
 
     // Write a green underlined text on a yellow background !
     println!("{}", "Hello World !".greenf().underline().yellowb());
