@@ -19,7 +19,6 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 /*!
 Terminal color using ansi escape character for Rust.
 
@@ -36,18 +35,19 @@ pub fn main() {
     colorize::global_bg(Blue);
     // ^~~~ These settings are reset to default at the end.
 
-    // You can use specific colors or style on a given str, 
+    // You can use specific colors or style on a given str,
     // the globals colors are restored after !
 
     // Write a green underlined text on a yellow background !
     println!("{}", "Hello World !".green().underline().yellowb());
 
     // Use bright or normal colors
-    println!("{}", "Bright Green foreground and Magenta background !".b_green().magentab());
+    println!("{}", "Bright Green foreground and Magenta background !"
+                   .b_green()
+                   .magentab());
 }
 
 ```
-
 */
 
 #[crate_id = "colorize#0.1"];
@@ -247,17 +247,17 @@ pub trait AnsiColor {
     fn b_black(self) -> ~str;
     /// Foreground red bright
     fn b_red(self) -> ~str;
-    /// Foreground green
+    /// Foreground green bright
     fn b_green(self) -> ~str;
-    /// Foreground yellow
+    /// Foreground yellow bright
     fn b_yellow(self) -> ~str;
-    /// Foreground blue
+    /// Foreground blue bright
     fn b_blue(self) -> ~str;
-    /// Foreground magenta
+    /// Foreground magenta bright
     fn b_magenta(self) -> ~str;
-    /// Foreground cyan
+    /// Foreground cyan bright
     fn b_cyan(self) -> ~str;
-    /// Foreground grey
+    /// Foreground grey bright
     fn b_grey(self) -> ~str;
     /// Foreground default
     fn default(self) -> ~str;
@@ -278,21 +278,21 @@ pub trait AnsiColor {
     fn cyanb(self) -> ~str;
     /// Background grey
     fn greyb(self) -> ~str;
-    /// Background black
+    /// Background black bright
     fn b_blackb(self) -> ~str;
-    /// Background red
+    /// Background red bright
     fn b_redb(self) -> ~str;
-    /// Background green
+    /// Background green bright
     fn b_greenb(self) -> ~str;
-    /// Background yellow
+    /// Background yellow bright
     fn b_yellowb(self) -> ~str;
-    /// Background bblue
+    /// Background bblue bright
     fn b_blueb(self) -> ~str;
-    /// Background magenta
+    /// Background magenta bright
     fn b_magentab(self) -> ~str;
-    /// Background cyan
+    /// Background cyan bright
     fn b_cyanb(self) -> ~str;
-    /// Background grey
+    /// Background grey bright
     fn b_greyb(self) -> ~str;
     /// Background default
     fn defaultb(self) -> ~str;
