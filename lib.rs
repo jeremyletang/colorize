@@ -58,6 +58,7 @@ pub fn main() {
 
 use std::cast;
 
+/// Ansi color to set the global foreground / background color
 pub enum Color {
     Black = 30,
     Red = 31,
@@ -208,18 +209,23 @@ mod internal {
     }
 }
 
+/// Set a custom global foreground color
 pub fn global_fg(color: Color) {
     internal::global_color(Some(color), None)
 }
 
+/// Set a custom global background color
 pub fn global_bg(color: Color) {
     internal::global_color(None, Some(BgColor::from_fg(color)))
 }
 
+/// Reset the background and foreground color to the defaults colors
 pub fn reset() {
     internal::global_color(Some(Default), Some(Defaultb))
 }
 
+/// Methods extension to colorize the text contained in a string
+/// using a simple mathod call
 pub trait AnsiColor {
     /// Foreground black
     fn black(self) -> ~str;
