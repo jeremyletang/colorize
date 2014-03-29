@@ -50,11 +50,11 @@ pub fn main() {
 ```
 */
 
-#[crate_id = "colorize#0.1"];
-#[desc = "Terminal color library"];
-#[license = "MIT"];
-#[crate_type = "dylib"];
-#[crate_type = "rlib"];
+#![crate_id = "colorize#0.1"]
+#![desc = "Terminal color library"]
+#![license = "MIT"]
+#![crate_type = "dylib"]
+#![crate_type = "rlib"]
 
 use std::cast;
 
