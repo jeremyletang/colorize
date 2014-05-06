@@ -19,7 +19,7 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#[crate_id = "colorize_tests"];
+#![crate_id = "colorize_tests"]
 
 extern crate colorize;
 use colorize::AnsiColor;
@@ -48,43 +48,43 @@ mod tests {
     use colorize::AnsiColor;
 
     pub fn foreground_color_owned_str() {
-        println!("{}", (~"Black").black());
-        println!("{}", (~"Bright black").b_black());
-        println!("{}", (~"Red").red());
-        println!("{}", (~"Bright Red").b_red());
-        println!("{}", (~"Green").green());
-        println!("{}", (~"Bright Green").b_green());
-        println!("{}", (~"Yellow").yellow());
-        println!("{}", (~"Bright Yellow").b_yellow());
-        println!("{}", (~"Blue").blue());
-        println!("{}", (~"Bright Blue").b_blue());
-        println!("{}", (~"Magenta").magenta());
-        println!("{}", (~"Bright Magenta").b_magenta());
-        println!("{}", (~"Cyan").cyan());
-        println!("{}", (~"Bright Cyan").b_cyan());
-        println!("{}", (~"Grey").grey());
-        println!("{}", (~"Bright Grey").b_grey());
-        println!("{}", (~"Hello world").default());
+        // println!("{}", (~"Black").black());
+        // println!("{}", (~"Bright black").b_black());
+        // println!("{}", (~"Red").red());
+        // println!("{}", (~"Bright Red").b_red());
+        // println!("{}", (~"Green").green());
+        // println!("{}", (~"Bright Green").b_green());
+        // println!("{}", (~"Yellow").yellow());
+        // println!("{}", (~"Bright Yellow").b_yellow());
+        // println!("{}", (~"Blue").blue());
+        // println!("{}", (~"Bright Blue").b_blue());
+        // println!("{}", (~"Magenta").magenta());
+        // println!("{}", (~"Bright Magenta").b_magenta());
+        // println!("{}", (~"Cyan").cyan());
+        // println!("{}", (~"Bright Cyan").b_cyan());
+        // println!("{}", (~"Grey").grey());
+        // println!("{}", (~"Bright Grey").b_grey());
+        // println!("{}", (~"Hello world").default());
     }
 
     pub fn background_color_owned_str() {
-        println!("{}", (~"Black").blackb());
-        println!("{}", (~"Bright black").b_blackb());
-        println!("{}", (~"Red").redb());
-        println!("{}", (~"Bright Red").b_redb());
-        println!("{}", (~"Green").greenb());
-        println!("{}", (~"Bright Green").b_greenb());
-        println!("{}", (~"Yellow").yellowb());
-        println!("{}", (~"Bright Yellow").b_yellowb());
-        println!("{}", (~"Blue").blueb());
-        println!("{}", (~"Bright Blue").b_blueb());
-        println!("{}", (~"Magenta").magentab());
-        println!("{}", (~"Bright Magenta").b_magentab());
-        println!("{}", (~"Cyan").cyanb());
-        println!("{}", (~"Bright Cyan").b_cyanb());
-        println!("{}", (~"Grey").greyb());
-        println!("{}", (~"Bright Grey").b_greyb());
-        println!("{}", (~"Hello world").defaultb());
+        // println!("{}", (~"Black").blackb());
+        // println!("{}", (~"Bright black").b_blackb());
+        // println!("{}", (~"Red").redb());
+        // println!("{}", (~"Bright Red").b_redb());
+        // println!("{}", (~"Green").greenb());
+        // println!("{}", (~"Bright Green").b_greenb());
+        // println!("{}", (~"Yellow").yellowb());
+        // println!("{}", (~"Bright Yellow").b_yellowb());
+        // println!("{}", (~"Blue").blueb());
+        // println!("{}", (~"Bright Blue").b_blueb());
+        // println!("{}", (~"Magenta").magentab());
+        // println!("{}", (~"Bright Magenta").b_magentab());
+        // println!("{}", (~"Cyan").cyanb());
+        // println!("{}", (~"Bright Cyan").b_cyanb());
+        // println!("{}", (~"Grey").greyb());
+        // println!("{}", (~"Bright Grey").b_greyb());
+        // println!("{}", (~"Hello world").defaultb());
     }
 
     pub fn foreground_color_ref_str() {
@@ -126,13 +126,13 @@ mod tests {
         println!("{}", "Bright Grey".b_greyb());
         println!("{}", "Hello world".defaultb());
     }
-    
+
     pub fn custom_styles_owned_str() {
-        println!("{}", (~"Hello world").underscore());
-        println!("{}", (~"Hello world").bold());
-        println!("{}", (~"Hello world").blink());
-        println!("{}", (~"Hello world").reverse());
-        println!("{}", (~"Hello world").concealed());
+        // println!("{}", (~"Hello world").underscore());
+        // println!("{}", (~"Hello world").bold());
+        // println!("{}", (~"Hello world").blink());
+        // println!("{}", (~"Hello world").reverse());
+        // println!("{}", (~"Hello world").concealed());
     }
 
     pub fn custom_styles_ref_str() {
