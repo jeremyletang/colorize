@@ -148,4 +148,3 @@ mod tests {
                  .b_yellowb().underscore());
     }
 }
-
