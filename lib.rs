@@ -56,7 +56,7 @@ pub fn main() {
 #![crate_type = "dylib"]
 #![crate_type = "rlib"]
 
-use std::cast;
+use std::mem;
 
 /// Ansi color to set the global foreground / background color
 pub enum Color {
@@ -124,7 +124,7 @@ impl internal::TermAttrib for Style {
 
 impl BgColor {
     fn from_fg(color: Color) -> BgColor {
-        unsafe { cast::transmute(color as i8 + 10) }
+        unsafe { mem::transmute(color as i8 + 10) }
     }
 }
 
@@ -141,6 +141,7 @@ mod internal {
         fn to_int(&self) -> int;
     }
 
+    #[deriving(Clone)]
     pub struct GlobalColor {
         fg: int,
         bg: int
@@ -153,48 +154,45 @@ mod internal {
     }
 
     fn get_glob() -> (int, int) {
-        local_data::get(glob_color, |g| {
-                match g {
-                    Some(ref g)    => (g.fg, g.bg),
-                    None        => {
-                        local_data::set(glob_color, GlobalColor {
-                                fg: DEFAULT_FG, bg: DEFAULT_BG
-                            });
-                        (DEFAULT_FG, DEFAULT_BG)
-                    }
-                }
-            })
+        match glob_color.get() {
+            Some(g)    => (g.fg, g.bg),
+            None        => {
+                glob_color.replace(Some(GlobalColor {
+                        fg: DEFAULT_FG, bg: DEFAULT_BG
+                }));
+                (DEFAULT_FG, DEFAULT_BG)
+            }
+        }
     }
 
     pub fn global_color(fg_color: Option<Color>, bg_color: Option<BgColor>) {
-        local_data::get_mut(glob_color, |g| {
-                match g {
-                    Some(g) => {
-                        match fg_color {
-                            Some(c) => g.fg = c.to_int(),
-                            None    => g.fg = DEFAULT_FG
-                        }
-                        match bg_color {
-                            Some(c) => g.bg = c.to_int(),
-                            None    => g.bg = DEFAULT_BG
-                        }
+        let is_some = glob_color.get().is_some();
+
+        if is_some {
+            let mut g = (*glob_color).get().unwrap().clone();
+            match fg_color {
+                Some(c) => g.fg = c.to_int(),
+                None    => g.fg = DEFAULT_FG
+            }
+            match bg_color {
+                Some(c) => g.bg = c.to_int(),
+                None    => g.bg = DEFAULT_BG
+            }
+            glob_color.replace(Some(g));
+        } else {
+            glob_color.replace(Some(GlobalColor {
+                    fg: if fg_color.is_some() {
+                        fg_color.unwrap().to_int()
+                    } else {
+                        DEFAULT_FG
                     },
-                    None    => {
-                        local_data::set(glob_color, GlobalColor {
-                                fg: if fg_color.is_some() {
-                                    fg_color.unwrap().to_int()
-                                } else {
-                                    DEFAULT_FG
-                                },
-                                bg: if bg_color.is_some() {
-                                    bg_color.unwrap().to_int()
-                                } else {
-                                    DEFAULT_BG
-                                }
-                            });
+                    bg: if bg_color.is_some() {
+                        bg_color.unwrap().to_int()
+                    } else {
+                        DEFAULT_BG
                     }
-                }
-            })
+                }));
+        }
     }
 
     pub fn pack<T: TermAttrib>(attrib: T, mut text: StrBuf) -> StrBuf {
