@@ -203,14 +203,14 @@ mod internal {
             }
             let tmp = text;
             text = StrBuf::from_str("\x1b[");
-            text.push_str(format!("{};", attrib.to_int()));
+            text.push_str(format!("{};", attrib.to_int()).as_slice());
             text.push_str(tmp.as_slice());
         } else {
             let tmp = text;
-            text = StrBuf::from_owned_str(format!("\x1b[{}m", attrib.to_int()));
+            text = format!("\x1b[{}m", attrib.to_int());
             text.push_str(tmp.as_slice());
             let (fg, bg) = get_glob();
-            text.push_str(format!("\x1b[0;{};{}m", fg, bg));
+            text.push_str(format!("\x1b[0;{};{}m", fg, bg).as_slice());
         }
         text
     }
@@ -320,56 +320,6 @@ pub trait AnsiColor {
     fn italic(self) -> StrBuf;
     /// Crossed out
     fn crossedout(self) -> StrBuf;
-}
-
-impl AnsiColor for ~str {
-    // Foreground
-    fn black(self) -> StrBuf { self.into_strbuf().black() }
-    fn red(self) -> StrBuf { self.into_strbuf().red() }
-    fn green(self) -> StrBuf { self.into_strbuf().green() }
-    fn yellow(self) -> StrBuf { self.into_strbuf().yellow() }
-    fn blue(self) -> StrBuf { self.into_strbuf().blue() }
-    fn magenta(self) -> StrBuf { self.into_strbuf().magenta() }
-    fn cyan(self) -> StrBuf { self.into_strbuf().cyan() }
-    fn grey(self) -> StrBuf { self.into_strbuf().grey() }
-    fn b_black(self) -> StrBuf { self.into_strbuf().b_black() }
-    fn b_red(self) -> StrBuf { self.into_strbuf().b_red() }
-    fn b_green(self) -> StrBuf { self.into_strbuf().b_green() }
-    fn b_yellow(self) -> StrBuf { self.into_strbuf().b_yellow() }
-    fn b_blue(self) -> StrBuf { self.into_strbuf().b_blue() }
-    fn b_magenta(self) -> StrBuf { self.into_strbuf().b_magenta() }
-    fn b_cyan(self) -> StrBuf { self.into_strbuf().b_cyan() }
-    fn b_grey(self) -> StrBuf { self.into_strbuf().b_grey() }
-    fn default(self) -> StrBuf { self.into_strbuf().default() }
-
-    // Background
-    fn blackb(self) -> StrBuf { self.into_strbuf().blackb() }
-    fn redb(self) -> StrBuf { self.into_strbuf().redb() }
-    fn greenb(self) -> StrBuf { self.into_strbuf().greenb() }
-    fn yellowb(self) -> StrBuf { self.into_strbuf().yellowb() }
-    fn blueb(self) -> StrBuf { self.into_strbuf().blueb() }
-    fn magentab(self) -> StrBuf { self.into_strbuf().magentab() }
-    fn cyanb(self) -> StrBuf { self.into_strbuf().cyanb() }
-    fn greyb(self) -> StrBuf { self.into_strbuf().greyb() }
-    fn b_blackb(self) -> StrBuf { self.into_strbuf().b_blackb() }
-    fn b_redb(self) -> StrBuf { self.into_strbuf().b_redb() }
-    fn b_greenb(self) -> StrBuf { self.into_strbuf().b_greenb() }
-    fn b_yellowb(self) -> StrBuf { self.into_strbuf().b_yellowb() }
-    fn b_blueb(self) -> StrBuf { self.into_strbuf().b_blueb() }
-    fn b_magentab(self) -> StrBuf { self.into_strbuf().b_magentab() }
-    fn b_cyanb(self) -> StrBuf { self.into_strbuf().b_cyanb() }
-    fn b_greyb(self) -> StrBuf { self.into_strbuf().b_greyb() }
-    fn defaultb(self) -> StrBuf { self.into_strbuf().defaultb() }
-
-    // styles
-    fn underscore(self) -> StrBuf { self.into_strbuf().underscore() }
-    fn bold(self) -> StrBuf { self.into_strbuf().bold() }
-    fn blink(self) -> StrBuf { self.into_strbuf().blink() }
-    fn reverse(self) -> StrBuf { self.into_strbuf().reverse() }
-    fn concealed(self) -> StrBuf { self.into_strbuf().concealed() }
-    fn faint(self) -> StrBuf { self.into_strbuf().faint() }
-    fn italic(self) -> StrBuf { self.into_strbuf().italic() }
-    fn crossedout(self) -> StrBuf { self.into_strbuf().crossedout() }
 }
 
 impl AnsiColor for StrBuf {
