@@ -48,43 +48,43 @@ mod tests {
     use colorize::AnsiColor;
 
     pub fn foreground_color_strbuf() {
-        println!("{}", "Black".to_strbuf().black());
-        println!("{}", "Bright black".to_strbuf().b_black());
-        println!("{}", "Red".to_strbuf().red());
-        println!("{}", "Bright Red".to_strbuf().b_red());
-        println!("{}", "Green".to_strbuf().green());
-        println!("{}", "Bright Green".to_strbuf().b_green());
-        println!("{}", "Yellow".to_strbuf().yellow());
-        println!("{}", "Bright Yellow".to_strbuf().b_yellow());
-        println!("{}", "Blue".to_strbuf().blue());
-        println!("{}", "Bright Blue".to_strbuf().b_blue());
-        println!("{}", "Magenta".to_strbuf().magenta());
-        println!("{}", "Bright Magenta".to_strbuf().b_magenta());
-        println!("{}", "Cyan".to_strbuf().cyan());
-        println!("{}", "Bright Cyan".to_strbuf().b_cyan());
-        println!("{}", "Grey".to_strbuf().grey());
-        println!("{}", "Bright Grey".to_strbuf().b_grey());
-        println!("{}", "Hello world".to_strbuf().default());
+        println!("{}", "Black".to_string().black());
+        println!("{}", "Bright black".to_string().b_black());
+        println!("{}", "Red".to_string().red());
+        println!("{}", "Bright Red".to_string().b_red());
+        println!("{}", "Green".to_string().green());
+        println!("{}", "Bright Green".to_string().b_green());
+        println!("{}", "Yellow".to_string().yellow());
+        println!("{}", "Bright Yellow".to_string().b_yellow());
+        println!("{}", "Blue".to_string().blue());
+        println!("{}", "Bright Blue".to_string().b_blue());
+        println!("{}", "Magenta".to_string().magenta());
+        println!("{}", "Bright Magenta".to_string().b_magenta());
+        println!("{}", "Cyan".to_string().cyan());
+        println!("{}", "Bright Cyan".to_string().b_cyan());
+        println!("{}", "Grey".to_string().grey());
+        println!("{}", "Bright Grey".to_string().b_grey());
+        println!("{}", "Hello world".to_string().default());
     }
 
     pub fn background_color_strbuf() {
-        println!("{}", "Black".to_strbuf().blackb());
-        println!("{}", "Bright black".to_strbuf().b_blackb());
-        println!("{}", "Red".to_strbuf().redb());
-        println!("{}", "Bright Red".to_strbuf().b_redb());
-        println!("{}", "Green".to_strbuf().greenb());
-        println!("{}", "Bright Green".to_strbuf().b_greenb());
-        println!("{}", "Yellow".to_strbuf().yellowb());
-        println!("{}", "Bright Yellow".to_strbuf().b_yellowb());
-        println!("{}", "Blue".to_strbuf().blueb());
-        println!("{}", "Bright Blue".to_strbuf().b_blueb());
-        println!("{}", "Magenta".to_strbuf().magentab());
-        println!("{}", "Bright Magenta".to_strbuf().b_magentab());
-        println!("{}", "Cyan".to_strbuf().cyanb());
-        println!("{}", "Bright Cyan".to_strbuf().b_cyanb());
-        println!("{}", "Grey".to_strbuf().greyb());
-        println!("{}", "Bright Grey".to_strbuf().b_greyb());
-        println!("{}", "Hello world".to_strbuf().defaultb());
+        println!("{}", "Black".to_string().blackb());
+        println!("{}", "Bright black".to_string().b_blackb());
+        println!("{}", "Red".to_string().redb());
+        println!("{}", "Bright Red".to_string().b_redb());
+        println!("{}", "Green".to_string().greenb());
+        println!("{}", "Bright Green".to_string().b_greenb());
+        println!("{}", "Yellow".to_string().yellowb());
+        println!("{}", "Bright Yellow".to_string().b_yellowb());
+        println!("{}", "Blue".to_string().blueb());
+        println!("{}", "Bright Blue".to_string().b_blueb());
+        println!("{}", "Magenta".to_string().magentab());
+        println!("{}", "Bright Magenta".to_string().b_magentab());
+        println!("{}", "Cyan".to_string().cyanb());
+        println!("{}", "Bright Cyan".to_string().b_cyanb());
+        println!("{}", "Grey".to_string().greyb());
+        println!("{}", "Bright Grey".to_string().b_greyb());
+        println!("{}", "Hello world".to_string().defaultb());
     }
 
     pub fn foreground_color_ref_str() {
@@ -128,11 +128,11 @@ mod tests {
     }
 
     pub fn custom_styles_strbuf() {
-        println!("{}", "Hello world".to_strbuf().underscore());
-        println!("{}", "hello world".to_strbuf().bold());
-        println!("{}", "Hello world".to_strbuf().blink());
-        println!("{}", "Hello world".to_strbuf().reverse());
-        println!("{}", "Hello world".to_strbuf().concealed());
+        println!("{}", "Hello world".to_string().underscore());
+        println!("{}", "hello world".to_string().bold());
+        println!("{}", "Hello world".to_string().blink());
+        println!("{}", "Hello world".to_string().reverse());
+        println!("{}", "Hello world".to_string().concealed());
     }
 
     pub fn custom_styles_ref_str() {
