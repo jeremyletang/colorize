@@ -1,3 +1,6 @@
+env:
+  global:
+    - secure: fSFyaJHgxk7BEjakwhjzFw9MlXyHjZ8YDsU0f+tOY35WuqyPR0xrjNDZOdClRRTHTh+5GLUwnZqlFv6TQy2Xd8ANlHnqdw+VU+lezMQF2kLATSgTOTz3scO/YUKDEZviQAdmb1HPEpD9x2CD66281a8VZwIJg2PDoGtVKkK/lMU=
 before_install:
   - sudo apt-get update
 install:
@@ -6,5 +9,7 @@ install:
   - export PATH=$PATH:$(pwd)/rust-nightly-x86_64-unknown-linux-gnu/bin
 script:
   - rustc --version
-  - rustc lib.rs
-  - rustc -L . test.rs
+  - cargo build
+  - rustdoc -o doc src/colorize.rs
+after_script:
+  - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
