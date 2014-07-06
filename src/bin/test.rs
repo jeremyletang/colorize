@@ -19,7 +19,7 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#![crate_id = "colorize_tests"]
+#![crate_name = "colorize_tests"]
 
 extern crate colorize;
 use colorize::AnsiColor;

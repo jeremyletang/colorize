@@ -50,7 +50,7 @@ pub fn main() {
 ```
 */
 
-#![crate_id = "colorize#0.1"]
+#![crate_name = "colorize"]
 #![desc = "Terminal color library"]
 #![license = "MIT"]
 #![crate_type = "dylib"]
