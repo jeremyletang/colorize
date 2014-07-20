@@ -8,4 +8,4 @@ name = "colorize"
 crate-type = ["rlib", "dylib"]
 
 [[bin]]
-name = "test"
+name = "colorize_tests"
