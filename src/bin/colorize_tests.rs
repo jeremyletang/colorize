@@ -37,9 +37,9 @@ fn main() {
     tests::foreground_color_ref_str();
     println!("{}", "\tTest background color for &'static str".greenb());
     tests::background_color_ref_str();
-    println!("{}", "\tTest custome styles for owned str".b_green());
+    println!("{}", "\tTest custom styles for owned str".b_green());
     tests::custom_styles_strbuf();
-    println!("{}", "\tTest custome styles for ref str".b_green());
+    println!("{}", "\tTest custom styles for ref str".b_green());
     tests::custom_styles_ref_str();
     tests::final_test();
 }
@@ -128,7 +128,7 @@ mod tests {
     }
 
     pub fn custom_styles_strbuf() {
-        println!("{}", "Hello world".to_string().underscore());
+        println!("{}", "Hello world".to_string().underlined());
         println!("{}", "hello world".to_string().bold());
         println!("{}", "Hello world".to_string().blink());
         println!("{}", "Hello world".to_string().reverse());
@@ -136,7 +136,7 @@ mod tests {
     }
 
     pub fn custom_styles_ref_str() {
-        println!("{}", "Hello world".underscore());
+        println!("{}", "Hello world".underlined());
         println!("{}", "Hello world".bold());
         println!("{}", "Hello world".blink());
         println!("{}", "Hello world".reverse());
@@ -145,6 +145,6 @@ mod tests {
 
     pub fn final_test() {
         println!("{}", "Super final test combo !".magenta().blink()
-                 .b_yellowb().underscore());
+                 .b_yellowb().underlined());
     }
 }

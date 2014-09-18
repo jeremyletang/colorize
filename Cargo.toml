@@ -3,7 +3,7 @@ name = "colorize"
 version = "0.0.1"
 authors = ["letang.jeremy@gmail.com"]
 
-[[lib]]
+[lib]
 name = "colorize"
 crate-type = ["rlib", "dylib"]
 

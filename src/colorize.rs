@@ -305,7 +305,7 @@ pub trait AnsiColor {
     fn defaultb(self) -> String;
 
     /// Text underlined
-    fn underscore(self) -> String;
+    fn underlined(self) -> String;
     /// Bold text
     fn bold(self) -> String;
     /// Blink test ( Wonderful )
@@ -362,7 +362,7 @@ impl AnsiColor for String {
     fn defaultb(self) -> String { internal::pack(Defaultb, self) }
 
     // styles
-    fn underscore(self) -> String { internal::pack(Underscore, self) }
+    fn underlined(self) -> String { internal::pack(Underscore, self) }
     fn bold(self) -> String { internal::pack(Bold, self) }
     fn blink(self) -> String { internal::pack(Blink, self) }
     fn reverse(self) -> String { internal::pack(Reverse, self) }
@@ -412,7 +412,7 @@ impl AnsiColor for &'static str {
     fn b_greyb(self) -> String { String::from_str(self).b_greyb() }
 
     // styles
-    fn underscore(self) -> String { String::from_str(self).underscore() }
+    fn underlined(self) -> String { String::from_str(self).underlined() }
     fn bold(self) -> String { String::from_str(self).bold() }
     fn blink(self) -> String { String::from_str(self).blink() }
     fn reverse(self) -> String { String::from_str(self).reverse() }

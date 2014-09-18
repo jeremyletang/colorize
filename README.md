@@ -12,7 +12,7 @@ To build __libcolorize__ just do :
 __libcolorize__ is really simple to use, see this short example !
 
 ```Rust
-extern mod colorize;
+extern crate colorize;
 // Import the trait implemented for &'static str and ~str
 use colorize::AnsiColor;
 // Import the colors for the global
@@ -28,10 +28,10 @@ pub fn main() {
     // the globals colors are restored after !
 
     // Write a green underlined text on a yellow background !
-    println!("{}", "Hello World !".greenf().underline().yellowb());
+    println!("{}", "Hello World !".green().underlined().yellowb());
 
     // Use bright or normal colors
-    println!("{}", "Bright Green foreground and Magenta background !".b_greenf().magentab());
+    println!("{}", "Bright Green foreground and Magenta background !".b_green().magentab());
 }
 
 ```
