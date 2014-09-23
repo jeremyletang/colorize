@@ -129,13 +129,11 @@ impl BgColor {
 }
 
 mod internal {
-    use std::local_data;
     use super::{Color, BgColor};
 
     static DEFAULT_FG: int = 39;
     static DEFAULT_BG: int = 49;
-
-    static glob_color: local_data::Key<GlobalColor> = &local_data::Key;
+    local_data_key!(glob_color: GlobalColor)
 
     pub trait TermAttrib {
         fn to_int(&self) -> int;
