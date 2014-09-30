@@ -196,8 +196,8 @@ mod internal {
     pub fn pack<T: TermAttrib>(attrib: T, mut text: String) -> String {
         if text.as_slice().starts_with("\x1b[") {
             unsafe {
-                text.shift_byte();
-                text.shift_byte();
+	    	text.as_mut_vec().remove(0);
+                text.as_mut_vec().remove(0);
             }
             let tmp = text;
             text = String::from_str("\x1b[");
