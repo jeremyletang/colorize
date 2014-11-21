@@ -55,6 +55,11 @@ pub fn main() {
 #![license = "MIT"]
 #![crate_type = "dylib"]
 #![crate_type = "rlib"]
+#![feature(globs)]
+
+use Color::*;
+use BgColor::*;
+use Style::*;
 
 use std::mem;
 
