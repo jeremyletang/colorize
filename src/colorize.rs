@@ -135,10 +135,11 @@ impl BgColor {
 
 mod internal {
     use super::{Color, BgColor};
+    use std::cell::RefCell;
 
     static DEFAULT_FG: int = 39;
     static DEFAULT_BG: int = 49;
-    local_data_key!(glob_color: GlobalColor)
+    thread_local!(static GLOB_COLOR: RefCell<GlobalColor> = RefCell::new(GlobalColor {fg: DEFAULT_FG, bg: DEFAULT_BG}))
 
     pub trait TermAttrib {
         fn to_int(&self) -> int;
@@ -157,22 +158,12 @@ mod internal {
     }
 
     fn get_glob() -> (int, int) {
-        match glob_color.get() {
-            Some(g)    => (g.fg, g.bg),
-            None        => {
-                glob_color.replace(Some(GlobalColor {
-                        fg: DEFAULT_FG, bg: DEFAULT_BG
-                }));
-                (DEFAULT_FG, DEFAULT_BG)
-            }
-        }
+        GLOB_COLOR.with (|cell| {let g = cell.borrow(); (g.fg, g.bg)})
     }
 
     pub fn global_color(fg_color: Option<Color>, bg_color: Option<BgColor>) {
-        let is_some = glob_color.get().is_some();
-
-        if is_some {
-            let mut g = (*glob_color).get().unwrap().clone();
+        GLOB_COLOR.with (|cell| {
+            let mut g = cell.borrow_mut();
             match fg_color {
                 Some(c) => g.fg = c.to_int(),
                 None    => g.fg = DEFAULT_FG
@@ -181,27 +172,13 @@ mod internal {
                 Some(c) => g.bg = c.to_int(),
                 None    => g.bg = DEFAULT_BG
             }
-            glob_color.replace(Some(g));
-        } else {
-            glob_color.replace(Some(GlobalColor {
-                    fg: if fg_color.is_some() {
-                        fg_color.unwrap().to_int()
-                    } else {
-                        DEFAULT_FG
-                    },
-                    bg: if bg_color.is_some() {
-                        bg_color.unwrap().to_int()
-                    } else {
-                        DEFAULT_BG
-                    }
-                }));
-        }
+        })
     }
 
     pub fn pack<T: TermAttrib>(attrib: T, mut text: String) -> String {
         if text.as_slice().starts_with("\x1b[") {
             unsafe {
-	    	text.as_mut_vec().remove(0);
+                text.as_mut_vec().remove(0);
                 text.as_mut_vec().remove(0);
             }
             let tmp = text;
