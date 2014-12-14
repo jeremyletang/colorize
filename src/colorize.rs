@@ -64,6 +64,7 @@ use Style::*;
 use std::mem;
 
 /// Ansi color to set the global foreground / background color
+#[deriving(Copy)]
 pub enum Color {
     Black = 30,
     Red = 31,
@@ -84,6 +85,7 @@ pub enum Color {
     BrightGrey = 97
 }
 
+#[deriving(Copy)]
 enum BgColor {
     Blackb = 40,
     Redb = 41,
@@ -104,6 +106,7 @@ enum BgColor {
     BrightGreyb = 107
 }
 
+#[deriving(Copy)]
 enum Style {
     Underscore = 4,
     Bold = 1,
