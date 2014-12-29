@@ -142,7 +142,7 @@ mod internal {
 
     static DEFAULT_FG: int = 39;
     static DEFAULT_BG: int = 49;
-    thread_local!(static GLOB_COLOR: RefCell<GlobalColor> = RefCell::new(GlobalColor {fg: DEFAULT_FG, bg: DEFAULT_BG}))
+    thread_local!(static GLOB_COLOR: RefCell<GlobalColor> = RefCell::new(GlobalColor {fg: DEFAULT_FG, bg: DEFAULT_BG}));
 
     pub trait TermAttrib {
         fn to_int(&self) -> int;
