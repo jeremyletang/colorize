@@ -51,11 +51,9 @@ pub fn main() {
 */
 
 #![crate_name = "colorize"]
-#![desc = "Terminal color library"]
-#![license = "MIT"]
 #![crate_type = "dylib"]
 #![crate_type = "rlib"]
-#![feature(globs)]
+#![allow(unstable)]
 
 use Color::*;
 use BgColor::*;
@@ -64,7 +62,7 @@ use Style::*;
 use std::mem;
 
 /// Ansi color to set the global foreground / background color
-#[deriving(Copy)]
+#[derive(Copy)]
 pub enum Color {
     Black = 30,
     Red = 31,
@@ -85,7 +83,7 @@ pub enum Color {
     BrightGrey = 97
 }
 
-#[deriving(Copy)]
+#[derive(Copy)]
 enum BgColor {
     Blackb = 40,
     Redb = 41,
@@ -106,7 +104,7 @@ enum BgColor {
     BrightGreyb = 107
 }
 
-#[deriving(Copy)]
+#[derive(Copy)]
 enum Style {
     Underscore = 4,
     Bold = 1,
@@ -119,15 +117,15 @@ enum Style {
 }
 
 impl internal::TermAttrib for Color {
-    fn to_int(&self) -> int { *self as int }
+    fn to_int(&self) -> i32 { *self as i32 }
 }
 
 impl internal::TermAttrib for BgColor {
-    fn to_int(&self) -> int { *self as int }
+    fn to_int(&self) -> i32 { *self as i32 }
 }
 
 impl internal::TermAttrib for Style {
-    fn to_int(&self) -> int { *self as int }
+    fn to_int(&self) -> i32 { *self as i32 }
 }
 
 impl BgColor {
@@ -140,18 +138,18 @@ mod internal {
     use super::{Color, BgColor};
     use std::cell::RefCell;
 
-    static DEFAULT_FG: int = 39;
-    static DEFAULT_BG: int = 49;
+    static DEFAULT_FG: i32 = 39;
+    static DEFAULT_BG: i32 = 49;
     thread_local!(static GLOB_COLOR: RefCell<GlobalColor> = RefCell::new(GlobalColor {fg: DEFAULT_FG, bg: DEFAULT_BG}));
 
     pub trait TermAttrib {
-        fn to_int(&self) -> int;
+        fn to_int(&self) -> i32;
     }
 
-    #[deriving(Clone)]
+    #[derive(Clone)]
     pub struct GlobalColor {
-        fg: int,
-        bg: int
+        fg: i32,
+        bg: i32
     }
 
     impl Drop for GlobalColor {
@@ -160,7 +158,7 @@ mod internal {
         }
     }
 
-    fn get_glob() -> (int, int) {
+    fn get_glob() -> (i32, i32) {
         GLOB_COLOR.with (|cell| {let g = cell.borrow(); (g.fg, g.bg)})
     }
 
