@@ -53,7 +53,7 @@ pub fn main() {
 #![crate_name = "colorize"]
 #![crate_type = "dylib"]
 #![crate_type = "rlib"]
-#![allow(unstable)]
+#![feature(collections,core)]
 
 use Color::*;
 use BgColor::*;
