@@ -53,7 +53,7 @@ pub fn main() {
 #![crate_name = "colorize"]
 #![crate_type = "dylib"]
 #![crate_type = "rlib"]
-#![allow(unstable)]
+#![feature(collections)]
 
 use Color::*;
 use BgColor::*;
@@ -62,7 +62,7 @@ use Style::*;
 use std::mem;
 
 /// Ansi color to set the global foreground / background color
-#[derive(Copy)]
+#[derive(Copy,Clone)]
 pub enum Color {
     Black = 30,
     Red = 31,
@@ -83,8 +83,8 @@ pub enum Color {
     BrightGrey = 97
 }
 
-#[derive(Copy)]
-enum BgColor {
+#[derive(Copy,Clone)]
+pub enum BgColor {
     Blackb = 40,
     Redb = 41,
     Greenb = 42,
@@ -104,7 +104,7 @@ enum BgColor {
     BrightGreyb = 107
 }
 
-#[derive(Copy)]
+#[derive(Copy,Clone)]
 enum Style {
     Underscore = 4,
     Bold = 1,
@@ -177,21 +177,21 @@ mod internal {
     }
 
     pub fn pack<T: TermAttrib>(attrib: T, mut text: String) -> String {
-        if text.as_slice().starts_with("\x1b[") {
+        if (&text).starts_with("\x1b[") {
             unsafe {
                 text.as_mut_vec().remove(0);
                 text.as_mut_vec().remove(0);
             }
             let tmp = text;
             text = String::from_str("\x1b[");
-            text.push_str(format!("{};", attrib.to_int()).as_slice());
-            text.push_str(tmp.as_slice());
+            text.push_str(&format!("{};", attrib.to_int()));
+            text.push_str(&tmp);
         } else {
             let tmp = text;
             text = format!("\x1b[{}m", attrib.to_int());
-            text.push_str(tmp.as_slice());
+            text.push_str(&tmp);
             let (fg, bg) = get_glob();
-            text.push_str(format!("\x1b[0;{};{}m", fg, bg).as_slice());
+            text.push_str(&format!("\x1b[0;{};{}m", fg, bg));
         }
         text
     }
