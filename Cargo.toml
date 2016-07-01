@@ -2,6 +2,11 @@
 name = "colorize"
 version = "0.1.0"
 authors = ["letang.jeremy@gmail.com"]
+description = "Simple terminal text colorisation using ansi characters"
+license = "MIT"
+readme = "./README.md"
+homepage = "https://github.com/jeremyletang/colorize"
+repository = "https://github.com/jeremyletang/colorize"
 
 [lib]
 name = "colorize"
